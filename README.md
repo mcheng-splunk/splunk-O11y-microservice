@@ -27,7 +27,7 @@ Spring Boot says: Hello from Go!%
 
 ![javaconfig](./images/1.png)
 ### VM option
--javaagent:./splunk-O11y-java-microservice/opentelemetry-javaagent.jar
+-javaagent:./splunk-O11y-java-microservice/splunk-otel-javaagent-all.jar
 
 ### Environment Variables
 OTEL_SERVICE_NAME=java-app;OTEL_RESOURCE_ATTRIBUTES=deployment.environment=dev
@@ -45,3 +45,13 @@ OTEL_SERVICE_NAME=java-app;OTEL_RESOURCE_ATTRIBUTES=deployment.environment=dev
 
 ![o11y-traces](./images/3.png)
 ![o11y-servicemap](./images/4.png)
+
+
+## Enabling Java JVM Metrics
+
+
+We need to enable `-Dsplunk.metrics.enabled=true ` to capture JVM metrics
+
+`java -javaagent:./splunk-otel-javaagent-all.jar -Dsplunk.metrics.enabled=true -jar ./target/splunk-O11y-java-microservice-0.0.1-SNAPSHOT.jar`
+
+![JVM-metrics](./images/5.png)
